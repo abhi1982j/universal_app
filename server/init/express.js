@@ -13,7 +13,7 @@ import { DB_TYPE, ENV } from '../../config/env';
 import { session as dbSession } from '../db';
 
 export default (app) => {
-  app.set('port', (process.env.PORT || 3000));
+  app.set('port', (process.env.PORT || 9999));
 
   if (ENV === 'production') {
     app.use(gzip());
@@ -76,17 +76,17 @@ export default (app) => {
     store: sessionStore
   };
 
-  console.log('--------------------------');
-  console.log('===> 😊  Starting Server . . .');
-  console.log(`===>  Environment: ${ENV}`);
-  console.log(`===>  Listening on port: ${app.get('port')}`);
-  console.log(`===>  Using DB TYPE: ${DB_TYPE}`);
+  //console.log('--------------------------');
+  //console.log('===> 😊  Starting Server . . .');
+  //console.log(`===>  Environment: ${ENV}`);
+  //console.log(`===>  Listening on port: ${app.get('port')}`);
+  //console.log(`===>  Using DB TYPE: ${DB_TYPE}`);
   if (ENV === 'production') {
     console.log('===> 🚦  Note: In order for authentication to work in production');
     console.log('===>           you will need a secure HTTPS connection');
     sess.cookie.secure = true; // Serve secure cookies
   }
-  console.log('--------------------------');
+  console.log(' Server Started ==>  ' + ` Environment: ${ENV}` +  " ==> " +` port: ${app.get('port')}`);
 
 
   app.use(session(sess));
