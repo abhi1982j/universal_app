@@ -42,7 +42,7 @@ initExpress(app);
  *
  * Note: Some of these routes have passport and database model dependencies
  */
-//initRoutes(app); //TODO: commented this as need to know for the express rounting..
+initRoutes(app); //TODO: commented this as need to know for the express rounting..
 
 /*
  * This is where the magic happens. We take the locals data we have already

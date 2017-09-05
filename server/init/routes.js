@@ -4,6 +4,7 @@
 import passport from 'passport';
 import unsupportedMessage from '../db/unsupportedMessage';
 import { controllers, passport as passportConfig } from '../db';
+import axios from "axios";
 
 const usersController = controllers && controllers.users;
 const topicsController = controllers && controllers.topics;
@@ -17,6 +18,17 @@ export default (app) => {
   } else {
     console.warn(unsupportedMessage('users routes'));
   }
+    app.get("/about", (req, res, next) => {
+        axios.get("http://jsonplaceholder.typicode.com/users")
+            .then(function (response) {
+                res.apiResponse = response.data;
+                next();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    });
+
 
   if (passportConfig && passportConfig.google) {
     // google auth

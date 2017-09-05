@@ -19,9 +19,11 @@ export default function render(req, res) {
             isWaiting: false,
             message: '',
             isLogin: true
-        }
+        }/*,
+        userStore: res.apiResponse*/
     }, history);
     const routes = createRoutes(store);
+    //store.dispatch({type: types.GET_TEMP_LIST, payload: res.apiResponse});
 
     /*
      * From the react-router docs:

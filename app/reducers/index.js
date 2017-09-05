@@ -17,6 +17,16 @@ const isFetching = (state = false, action) => {
   }
 };
 
+const userStore = (state = false, action) => {
+    switch (action.type) {
+        case types.GET_TEMP_LIST:
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+
 // Combine reducers with routeReducer which keeps track of
 // router state
 const rootReducer = combineReducers({
