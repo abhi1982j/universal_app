@@ -3,6 +3,7 @@ import { routerReducer as routing } from 'react-router-redux';
 import user from '../reducers/user';
 import topic from '../reducers/topic';
 import message from '../reducers/message';
+import userList from '../reducers/userList';
 import * as types from '../types';
 
 const isFetching = (state = false, action) => {
@@ -17,24 +18,16 @@ const isFetching = (state = false, action) => {
   }
 };
 
-const userStore = (state = false, action) => {
-    switch (action.type) {
-        case types.GET_TEMP_LIST:
-            return action.payload;
-        default:
-            return state;
-    }
-}
-
 
 // Combine reducers with routeReducer which keeps track of
 // router state
 const rootReducer = combineReducers({
-  isFetching,
-  topic,
-  user,
-  message,
-  routing
+  //isFetching,
+  //topic,
+  //user,
+  //message,
+  routing,
+  userList
 });
 
 export default rootReducer;

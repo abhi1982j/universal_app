@@ -19,7 +19,8 @@ module.exports = ({ production = false, browser = false } = {}) => {
       new webpack.EnvironmentPlugin(['NODE_ENV']),
       new webpack.DefinePlugin(compileTimeConstantForMinification),
       new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin()
+      new webpack.NoEmitOnErrorsPlugin(),
+      new ExtractTextPlugin('./styles/bundle.css')
     ];
   }
   if (production && !browser) {
@@ -30,7 +31,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
       new webpack.optimize.UglifyJsPlugin({ compress })
     ];
   }
-  if (production && browser) {
+  /*if (production && browser) {
     return [
       new webpack.EnvironmentPlugin(['NODE_ENV']),
       new webpack.DefinePlugin(compileTimeConstantForMinification),
@@ -43,6 +44,6 @@ module.exports = ({ production = false, browser = false } = {}) => {
         fileName: 'manifest.json'
       })
     ];
-  }
+  }*/
   return [];
 };

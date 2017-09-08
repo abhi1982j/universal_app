@@ -25,7 +25,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
    */
   const localIdentName = 'localIdentName=[name]__[local]___[hash:base64:5]';
 
-  const createCssLoaders = embedCssInBundle => ([
+  /*const createCssLoaders = embedCssInBundle => ([
     {
       loader: embedCssInBundle ? 'css-loader' : 'css-loader/locals',
       options: {
@@ -36,15 +36,19 @@ module.exports = ({ production = false, browser = false } = {}) => {
       }
     },
     {
-      loader: 'postcss-loader',
-      options: {
-        ident: 'postcss',
+      /!*loader: 'scss-loader',*!/
+      /!*options: {
+
         plugins: [
-          postcssImport({ path: path.resolve(PATHS.app, './css') }),
+          postcssImport({ path: path.resolve(PATHS.app, './styles') }),
           postcssCssnext({ browsers: ['> 1%', 'last 2 versions'] }),
           postcssReporter({ clearMessages: true })
         ]
-      }
+      }*!/
+       // sass / scss loader for webpack
+        plugins: [
+           new ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
+        ]
     }
   ]);
 
@@ -60,10 +64,10 @@ module.exports = ({ production = false, browser = false } = {}) => {
 
   const serverLoaders = createCssLoaders(false);
   const browserLoaders = createBrowserLoaders(production)(createCssLoaders(true));
-
+*/
   return {
-    test: /\.css$/,
-    use: browser ? browserLoaders : serverLoaders,
+    test: /\.(sass|scss)$/,
+    use: ExtractTextPlugin.extract(['css-loader', 'sass-loader']),
     include: PATHS.app
   };
 };

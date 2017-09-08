@@ -14,13 +14,13 @@ export default function render(req, res) {
     const authenticated = req.isAuthenticated();
     const history = createMemoryHistory();
     const store = configureStore({
-        user: {
+        /*user: {
             authenticated,
             isWaiting: false,
             message: '',
             isLogin: true
-        }/*,
-        userStore: res.apiResponse*/
+        },*/
+        userList: res.apiResponse
     }, history);
     const routes = createRoutes(store);
     //store.dispatch({type: types.GET_TEMP_LIST, payload: res.apiResponse});
