@@ -29,6 +29,16 @@ export default (app) => {
             });
     });
 
+    app.get("/test", (req, res, next) => {
+        axios.get("http://jsonplaceholder.typicode.com/users")
+            .then(function (response) {
+                res.apiResponse = response.data;
+                next();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    });
 
   if (passportConfig && passportConfig.google) {
     // google auth
